@@ -1,9 +1,13 @@
 require("dotenv").config();
 const express = require("express");
-const request = require("request");
-const crypto = require("crypto");
 const con = require("./db");
 const app = express();
+const cors = require("cors");
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.get("/api/token", (req, res) => {
   const { shop } = req.query;
   con.connect(function (err) {
